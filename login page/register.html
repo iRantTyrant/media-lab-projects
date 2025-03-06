@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!---Meta Data ---->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--This is for responsive design-->
+    <meta name="description" content="The register page for iRant's Dive Camp"> <!--This is for SEO-->
+    <meta name="keywords" content="iRant, Dive, Camp, iRant's Dive Camp, iRant Dive Camp"> <!--//This is for SEO-->
+    <meta name="author" content="iRant"> <!--This is for SEO-->
+    <!---Meta Data ---->
+
+    <!---Linking CSS and favicons---->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!---Linking CSS and favicons---->
+
+    <!--Title of the page-->
+    <title>Register || iRant's Dive Camp</title>
+    <!--Title of the page-->    
+</head>
+<body>
+    <!--The login container-->
+    <div class="form-container">
+        <h1 class="bold">Register form</h1>
+        <!--The form of the login-->
+         <form action="" method="POST">
+             <!--Username-->
+                 <div class="form-group">
+                     <label for="username" class="bold">Enter a Username</label>
+                     <input type="text" name="username" id="username" class="form-control" placeholder="iRant" required>
+                 </div>
+             <!--Username-->
+             <!--Password-->
+                 <div class="form-group">
+                     <label for="password" class="bold">Enter a Password</label>
+                     <input type="password" name="password" id="password" class="form-control" required>
+                 </div>
+             <!--Username-->
+             <!--Age-->
+                 <div class="form-group">
+                     <label for="Age" class="bold">Select your age</label>
+                     <input type="number" name="age" id="age" required  min="12" max="100" placeholder="18">
+                 </div>
+             <!--Age-->
+             <!--Gender-->
+             <div class="radio">
+                <div class="inline-block"><label for ="gender" class="bold">Please select your gender</label></div>
+                <div class="inline-block"><label for="male">Male<input type="radio" name="gender" id="male" value="male" checked></label></div>
+                <div class="inline-block"><label for="female">Female</label><input type="radio" name="gender" id="female" value="female"></label></div>
+            </div>
+             <!--Gender-->
+             <!--Education-->
+                 <div class="form-group">
+                     <label for="education" class="bold">Select your certification level</label>
+                     <select name="education" id="education">
+                         <option value="0">--Select your certification--</option>
+                         <option value="open-water">Open Water Diver</option>
+                         <option value="advanced-diver">Advanced Diver</option>
+                         <option value="rescue-diver">Rescue Diver</option>
+                         <option value="divemaster">Divemaster</option>
+                      </select>
+                 </div>
+             <!--Education-->
+             <!--submit button-->   
+               <button type="submit" class="btn">Login</button>
+             <!--submit button-->
+         </form>
+         <!--The form of the login-->
+         <p>Already a memeber? Then please <a href="login.html">login</a></p>
+         <p><a href="index.html">Back to the home page</a></p>
+     </div>
+     <!--The login container-->
+</body>
+</html>

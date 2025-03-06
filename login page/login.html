@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!---Meta Data ---->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--This is for responsive design-->
+    <meta name="description" content="The login page for iRant's Dive Camp"> <!--This is for SEO-->
+    <meta name="keywords" content="iRant, Dive, Camp, iRant's Dive Camp, iRant Dive Camp"> <!--//This is for SEO-->
+    <meta name="author" content="iRant"> <!--This is for SEO-->
+    <!---Meta Data ---->
+
+    <!---Linking CSS and favicons---->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!---Linking CSS and favicons---->
+
+    <!--Title of the page-->
+    <title>Login || iRant's Dive Camp</title>
+    <!--Title of the page-->    
+</head>
+<body>
+    <!--The login container-->
+    <div class="form-container">
+       <h1 class="bold">Login form</h1>
+       <!--The form of the login-->
+        <form action="" method="POST">
+            <!--Username-->
+                <div class="form-group">
+                    <label for="username" class="bold">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="iRant"required>
+                </div>
+            <!--Username-->
+            <!--Password-->
+                <div class="form-group">
+                    <label for="password" class="bold">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
+            <!--Username-->
+            <!--Remember me-->
+                <div class="form-group">
+                    <label for="remember" class="bold">Remember me</label>
+                    <input type="checkbox" name="remember" id="remember">
+                </div>
+            <!--Remember me-->
+            <!--submit button-->   
+              <button type="submit" class="btn">Login</button>
+            <!--submit button-->
+        </form>
+        <!--The form of the login-->
+        <p>Not a member? Then please <a href="register.html" class="refferences">register</a></p>
+        <p><a href="index.html" class="efferences">Back to the home page</a></p>
+    </div>
+    <!--The login container-->
+</body>
+</html>

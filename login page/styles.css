@@ -1,0 +1,242 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden; /* Prevents horizontal scroll */
+}
+body{
+    margin: 0;
+    padding: 0;    
+    background-size: cover;
+    background-position: center;
+    font-family: 'Roboto' , sans-serif;
+    background: linear-gradient(to top, rgb(123, 203, 230), white); 
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    height : 100%;
+    flex-direction: column;
+    width:100%;
+    min-height: 100vh; /* Ensure the gradient covers the full viewport height */
+}
+
+
+
+/*--Login-Register form styling--*/
+
+/*Form container styling*/
+.form-container{
+    width: 25%;
+    min-width: 300px; 
+    height: auto;
+    padding: 2%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(209, 207, 207);
+    border-radius: 15px;
+    flex-direction: column;
+    box-shadow: 15px 10px 10px 10px rgba(0, 0, 0, 0.1);
+    color: rgb(13, 183, 240);
+    box-sizing: border-box; 
+}
+/*Form container styling*/
+
+/*Form items styling*/
+.form-group{
+    width: 100%;
+    height: auto;
+    margin: 15px 0;
+    position: relative;
+}
+/*Form items styling*/
+
+/*Radio button styling*/
+.radio{
+    display: flex;
+    flex-direction: column;
+}
+input[type="radio"] {
+    margin-right: 5px;
+}
+/*Radio button styling*/
+
+/*Input styling*/
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid rgb(13, 183, 240);
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box; 
+}
+select{
+    color:rgb(13, 183, 240);
+}
+/*Input styling*/
+
+/*Button styling*/
+button{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid rgb(13, 183, 240);
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+}
+/*Button styling*/
+
+/*--Login-Register form styling--*/
+
+/*--Index page styling--*/
+
+/*Index page container styling*/
+.index-container{
+    height:100%;
+    width:100%;
+    display: block;
+}
+/*Index page container styling*/
+
+.description{/*center the text of the description*/
+    text-align: center;
+}
+
+
+/*Header styling*/
+.header-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: black;
+    color:white;
+    margin:0;
+    
+}
+#branding{
+    margin-left: -20%;
+}
+/*Header styling*/
+
+/*Nav bar styling*/
+li {
+    margin-left:20%;
+    list-style-type: none;
+    margin-top:-2%;
+}
+li a{
+    color:white !important;
+    text-decoration: none;
+    font-weight:bold;
+    font-size:large;
+}
+ul{
+    display: flex;
+    flex-direction: row;
+    margin-top: 17%;
+    justify-content: space-between;
+}
+.nav-item > a{
+    color:white;
+}
+/*Nav bar styling*/
+
+/*Index page body content styling*/
+.info-showcase{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4%;
+    margin-left: 25%;
+    margin-right:25%;
+    background-color: rgb(209, 207, 207);
+    border-radius: 15px;
+    width:50%;
+    text-align: center;
+    padding:10px;
+    box-shadow: 15px 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+/*Index page body content styling*/
+
+/*Footer styling*/
+
+footer{
+    width: 100%;
+    text-align: center; /* Center the text inside the footer */
+    padding: 10px 0; /* Add padding for better spacing */
+    position:relative;
+    bottom:0;
+}
+/*Footer styling*/
+
+/*Images of the index page*/
+img{
+    width: 200px; 
+    height: 200px; 
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    border-radius: 50%; /* Make the image circular */
+}
+
+.image-showcase{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+}
+/*Images of the index page*/
+
+/*--Index page styling--*/
+
+
+.inline-block{/* Displaying the elements in a row */
+    display: inline-block;
+}
+.bold{/* Bold text */
+    font-weight: bold;
+}
+
+/*Anchor tag styling*/
+a:hover{
+    color:rgb(2, 38, 245);
+}
+a{
+    color:rgb(11, 138, 223);
+}
+a:visited{
+    color:rgb(11, 138, 223);
+}
+/*Anchor tag styling*/
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        width: 50%; /* Adjust container width for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 80%; /* Adjust container width for mobile devices */
+    }
+
+    .form-group {
+        margin: 10px 0; /* Adjust margin for form groups on mobile */
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="number"],
+    select {
+        font-size: 14px; /* Adjust font size for inputs on mobile */
+        padding: 8px; /* Adjust padding for inputs on mobile */
+    }
+}
+
