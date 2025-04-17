@@ -1,0 +1,62 @@
+{% extends "blog/base.html" %}
+
+{% block title %}From the Blog{% endblock %}
+
+{% block content %}
+<div class="py-12 sm:py-16">
+    <div class="max-w-3xl mx-auto px-4">
+
+        <div class="mt-5 space-y-16 border-y border-gray-200 pt-10 pb-10 sm:mt-8 sm:pt-16">
+            {% for post in page_obj %}
+            <article class="flex max-w-xl flex-col items-start justify-between">
+                <div class="flex items-center gap-x-4 text-xs">
+                    <time datetime="{{ post.publish|date:'Y-m-d' }}" class="text-gray-500">
+                        {{ post.publish|date:"F d, Y" }}
+                    </time>
+                    <span class="text-gray-600">{{ post.author }}</span>
+                </div>
+                <div class="group relative">
+                    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                        <a href="{% url 'blogapp:post_detail' id=post.id %}">
+                            <span class="absolute inset-0"></span>
+                            {{ post.title }}
+                        </a>
+                    </h3>
+                    <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+                        {{ post.body|truncatewords:30 }}
+                    </p>
+                </div>
+            </article>
+            {% empty %}
+                <p>No posts found.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination info -->
+        <div class="mt-4 text-gray-600">
+            <p>Showing {{ page_obj.start_index }} to {{ page_obj.end_index }} of {{ page_obj.paginator.count }} posts</p>
+        </div>
+
+        <!-- Pagination controls -->
+        <div class="mt-4 flex justify-between">
+            <div class="flex items-center">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md">Previous</a>
+                {% else %}
+                    <span class="px-4 py-2 bg-gray-200 text-gray-500 rounded-md">Previous</span>
+                {% endif %}
+            </div>
+            <div class="flex items-center">
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md">Next</a>
+                {% else %}
+                    <span class="px-4 py-2 bg-gray-200 text-gray-500 rounded-md">Next</span>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+

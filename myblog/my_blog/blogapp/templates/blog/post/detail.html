@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="py-24 sm:py-32">
+  <div class="mx-auto max-w-4xl px-6 lg:px-8">
+    <article class="prose prose-lg">
+      <h1 class="text-4xl font-bold text-gray-900">{{ post.title }}</h1>
+      <p class="text-sm text-gray-500 mt-2">
+        Published on {{ post.publish|date:"F j, Y" }} by {{ post.author }}
+      </p>
+      <div class="mt-8 text-gray-800 leading-relaxed">
+        {{ post.body|linebreaks }}
+      </div>
+    </article>
+  </div>
+</div>
+{% endblock %}
