@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Share "{{ post.title }}"{% endblock %}
+
+{% block content %}
+    <div class="border-y border-gray-400 pt-10 pb-10">
+  <h2 class="text-2xl font-bold mb-4">Share "{{ post.title }}" by Email</h2>
+
+  {% if sent %}
+    <p class="text-green-600">Email successfully sent!</p>
+  {% else %}
+  <form method="post" class="space-y-6">
+    {% csrf_token %}
+  
+    <div>
+      <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-700">Your Name</label>
+      {{ form.name }}
+    </div>
+  
+    <div>
+      <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700">Your Email</label>
+      {{ form.email }}
+    </div>
+  
+    <div>
+      <label for="{{ form.to.id_for_label }}" class="block text-sm font-medium text-gray-700">Recipient Email</label>
+      {{ form.to }}
+    </div>
+  
+    <div>
+      <label for="{{ form.comments.id_for_label }}" class="block text-sm font-medium text-gray-700">Comments</label>
+      {{ form.comments }}
+    </div>
+  
+    <button type="submit" class="bg-white text-black border shadow hover:bg-gray-700 hover:text-white font-bold py-2 px-4 rounded">
+      Send Email
+    </button>
+  </form>
+  
+  {% endif %}
+    </div>
+{% endblock %}

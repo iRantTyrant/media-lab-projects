@@ -6,7 +6,7 @@
 <div class="py-12 sm:py-16">
     <div class="max-w-3xl mx-auto px-4">
 
-        <div class="mt-5 space-y-16 border-y border-gray-200 pt-10 pb-10 sm:mt-8 sm:pt-16">
+        <div class="mt-5 space-y-16 border-y border-gray-400  pt-10 pb-10 sm:mt-8 sm:pt-16">
             {% for post in page_obj %}
             <article class="flex max-w-xl flex-col items-start justify-between">
                 <div class="flex items-center gap-x-4 text-xs">
@@ -41,16 +41,16 @@
         <div class="mt-4 flex justify-between">
             <div class="flex items-center">
                 {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md">Previous</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="px-4 py-2 bg-white text-black border shadow rounded-md hover:text-white hover:bg-gray-700 transition duration-200">Previous</a>
                 {% else %}
-                    <span class="px-4 py-2 bg-gray-200 text-gray-500 rounded-md">Previous</span>
+                    <span class="px-4 py-2 bg-white text-black border shadow rounded-md hover:text-white hover:bg-gray-700 transition duration-200">Previous</span>
                 {% endif %}
             </div>
             <div class="flex items-center">
                 {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md">Next</a>
+                    <a href="?page={{ page_obj.next_page_number }}" class="px-4 py-2 bg-white text-black border shadow rounded-md hover:text-white hover:bg-gray-700 transition duration-200">Next</a>
                 {% else %}
-                    <span class="px-4 py-2 bg-gray-200 text-gray-500 rounded-md">Next</span>
+                    <span class="px-4 py-2 bg-white text-black border shadow rounded-md hover:text-white hover:bg-gray-700 transition duration-200">Next</span>
                 {% endif %}
             </div>
         </div>

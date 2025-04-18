@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="py-24 sm:py-32">
-  <div class="mx-auto max-w-4xl px-6 lg:px-8 border-y border-gray-200 pt-10 pb-10">
+  <div class="mx-auto max-w-4xl px-6 lg:px-8 border-y border-gray-400 pt-10 pb-10">
     <article class="prose prose-lg">
       <h1 class="text-4xl font-bold text-gray-900">{{ post.title }}</h1>
       <p class="text-sm text-gray-500 mt-2">
@@ -13,7 +13,15 @@
       <div class="mt-8 text-gray-800 leading-relaxed">
         {{ post.body|linebreaks }}
       </div>
+      <div class="flex justify-end mt-10">
+        <a href="{% url 'blogapp:post_share' post.id %}" 
+          class="inline-block px-4 py-2 bg-white-600 text-black border shadow font-semibold rounded hover:text-white hover:bg-gray-700 transition duration-200">
+          Share via Email
+        </a>
+      </div>
+
     </article>
   </div>
 </div>
 {% endblock %}
+
