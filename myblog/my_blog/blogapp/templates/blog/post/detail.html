@@ -19,8 +19,55 @@
           Share via Email
         </a>
       </div>
-
     </article>
+    <!--Posted comments are displayed here -->
+    <div class="mt-10">
+      <h2 class="text-2xl font-bold mb-4">Comments</h2>
+    
+      {% for comment in comments %}
+        <div class="mb-4 border-b pb-4">
+          <p class="text-sm text-gray-700"><strong>{{ comment.name }}</strong> ({{ comment.created|date:"F j, Y" }})</p>
+          <p class="mt-2 text-gray-800">{{ comment.body|linebreaks }}</p>
+        </div>
+      {% empty %}
+        <p class="text-gray-500">No comments yet.</p>
+      {% endfor %}
+    </div>
+    <!--Posted comments are displayed here -->
+
+    <!--Comment form is displayed here -->
+    <div class="mt-16 border-t pt-10">
+      <h2 class="text-xl font-semibold mb-6">Leave a comment</h2>
+
+      <form method="post" action="{% url 'blogapp:post_comment' post.id %}" class="space-y-6">
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        <div>
+          {{ form.name.label_tag }}
+          {{ form.name }}
+          {{ form.name.errors }}
+        </div>
+
+        <div>
+          {{ form.email.label_tag }}
+          {{ form.email }}
+          {{ form.email.errors }}
+        </div>
+
+        <div>
+          {{ form.body.label_tag }}
+          {{ form.body }}
+          {{ form.body.errors }}
+        </div>
+
+        <button type="submit" class="px-4 py-2 border shadow bg-white text-black font-bold hover:bg-gray-700 hover:text-white transition">
+          Submit Comment
+        </button>
+      </form>
+    </div>
+    <!--Comment form is displayed here-->
   </div>
 </div>
 {% endblock %}

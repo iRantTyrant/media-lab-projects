@@ -1,0 +1,33 @@
+{# blog/templates/blog/post/comment_form.html #}
+
+<div class="mt-12">
+  <h2 class="text-2xl font-semibold mb-4">Leave a comment</h2>
+
+  <form method="post" class="space-y-6">
+    {% csrf_token %}
+    
+    {{ form.non_field_errors }}
+
+    <div>
+      <label for="id_name" class="block text-sm font-medium text-gray-700">Name</label>
+      {{ form.name }}
+      {{ form.name.errors }}
+    </div>
+
+    <div>
+      <label for="id_email" class="block text-sm font-medium text-gray-700">Email</label>
+      {{ form.email }}
+      {{ form.email.errors }}
+    </div>
+
+    <div>
+      <label for="id_body" class="block text-sm font-medium text-gray-700">Comment</label>
+      {{ form.body }}
+      {{ form.body.errors }}
+    </div>
+
+    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+      Submit Comment
+    </button>
+  </form>
+</div>

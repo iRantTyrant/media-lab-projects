@@ -1,7 +1,11 @@
+#Import the models module so we can create our models
 from django.db import models
+#Import the settings module so we can use the AUTH_USER_MODEL setting
 from django.conf import settings
+#Import the module so we can use the reverse function for the SEO friendly urls
 from django.urls import reverse
 
+#Create a model for the blog posts
 class Post(models.Model):
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Draft'
@@ -21,10 +25,28 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-    def get_absolute_url(self):
+    def get_absolute_url(self): #This function returns the url of the post based on the publish date and the slug
         return reverse('blogapp:post_detail', args=[
             self.publish.year,
             self.publish.month,
             self.publish.day,
             self.slug
     ])
+#Create a model for the blog posts 
+
+#Create a model for the comments
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['created']
+    
+    def __str__(self):
+        return f'Comment by {self.name} on {self.post}'
+        

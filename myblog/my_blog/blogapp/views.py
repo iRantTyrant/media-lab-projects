@@ -1,5 +1,5 @@
 #Imported modules for the views 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from .models import Post
 
 #Imported modules for the pagination
@@ -8,6 +8,10 @@ from django.core.paginator import Paginator
 #Imported modules for the email
 from django.core.mail import send_mail
 from .forms import emailPostForm #This is the form we created on the file forms.py in the same directory hence the dot before the name of the file
+
+#Imported modules for the comments
+from .forms import CommentForm
+from .models import Comment
 
 
 # Function to display the list of posts
@@ -30,7 +34,13 @@ def post_detail(request, year, month, day, post):
         publish__day=day,
         status='P'
     )
-    return render(request, 'blog/post/detail.html', {'post': post})
+    comments = Comment.objects.filter(post=post, active=True)
+    form = CommentForm()
+    return render(request, 'blog/post/detail.html', {
+    'post': post,
+    'comments': comments,
+    'form': form
+    })
 
 # Function to handle the email sharing of a post
 def post_share(request, post_id):
@@ -48,3 +58,17 @@ def post_share(request, post_id):
     else:
         form = emailPostForm()
     return render(request, 'blog/post/share.html', {'post': post, 'form': form, 'sent': sent})
+
+#Funtion to handle the comments 
+def post_comment(request, post_id):
+    post = get_object_or_404(Post, id=post_id, status='P')
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
+            return redirect(post.get_absolute_url())
+    else:
+        form = CommentForm()
+    return render(request, 'blog/post/comment.html', {'post': post, 'form': form})
