@@ -4,6 +4,8 @@ from django.db import models
 from django.conf import settings
 #Import the module so we can use the reverse function for the SEO friendly urls
 from django.urls import reverse
+#Import the tags module so we can use add and remove tags from posts
+from taggit.managers import TaggableManager
 
 #Create a model for the blog posts
 class Post(models.Model):
@@ -32,6 +34,7 @@ class Post(models.Model):
             self.publish.day,
             self.slug
     ])
+    tags = TaggableManager() #This enables us to add tags to the posts
 #Create a model for the blog posts 
 
 #Create a model for the comments
@@ -49,4 +52,3 @@ class Comment(models.Model):
     
     def __str__(self):
         return f'Comment by {self.name} on {self.post}'
-        

@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blogapp',
+    'blogapp', #This is the app we created for the blog
+    'taggit', #taggit is a library that allows us to add tags to the posts
 ]
 
 MIDDLEWARE = [
