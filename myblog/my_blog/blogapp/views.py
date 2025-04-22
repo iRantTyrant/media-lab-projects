@@ -13,6 +13,9 @@ from .forms import emailPostForm #This is the form we created on the file forms.
 from .forms import CommentForm
 from .models import Comment
 
+#Imported modules for the login required decorator
+from django.contrib.auth.decorators import login_required
+
 
 # Function to display the list of posts
 def post_list(request):
@@ -60,6 +63,7 @@ def post_share(request, post_id):
     return render(request, 'blog/post/share.html', {'post': post, 'form': form, 'sent': sent})
 
 #Funtion to handle the comments 
+@login_required
 def post_comment(request, post_id):
     post = get_object_or_404(Post, id=post_id, status='P')
     if request.method == 'POST':

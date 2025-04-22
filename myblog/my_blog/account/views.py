@@ -19,11 +19,14 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('home')  # Redirect after login
+                return redirect('/blogapp/')  # Redirect after login
             else:
                 form.add_error(None, 'Invalid username/email or password')
 
     else:
         form = CustomAuthenticationForm()
 
-    return render(request, 'account/templates/login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
+
+def logged_out_view(request):
+    return render(request, 'account/logged_out.html')

@@ -7,16 +7,28 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white">
-
     <!-- Heading -->
-    <div class="max-w-3xl mx-auto px-4 pt-8 text-center">
-        <h1 class="text-4xl font-bold text-left mb-2">From the Blog</h1>
-        <p class="text-lg text-left mb-4">Lorem ipsum</p>
-    </div>
-    
+     
+    {% if user.is_authenticated %}
+    <div class="max-w-3xl mx-auto px-4 pt-4 text-center">
+        <h1 class="text-4xl font-bold text-left mb-">From the Blog</h1>
+        <div class ="flex justify-between items-center">
+            <p class="text-lg text-left">Welcome {{ user.username }}</p>
+            <a href="{% url 'account:login' %}" class= "btn btn-primary bg-white py-2 px-2  text-black font-bold border rounded shadow hover:bg-gray-700 hover:text-white transition">Logout</a>
+        </div>
+    </div>   
+    {% else %}
+    <div class="max-w-3xl mx-auto px-4 pt-4 text-center">
+        <h1 class="text-4xl font-bold text-left mb-">From the Blog</h1>
+        <div class ="flex justify-between items-center">
+            <p class="text-lg text-left">Lorem ipsum</p>
+            <a href="{% url 'account:login' %}" class= "btn btn-primary bg-white py-2 px-2  text-black font-bold border rounded shadow hover:bg-gray-700 hover:text-white transition">Login</a>
+        </div>
+    </div>   
+    {% endif %} 
 
-    <!-- Content Block -->
-    <div class="max-w-3xl mx-auto px-4 pb-24 ">
+    <!-- Content Block --> 
+    <div class="max-w-3xl mx-auto  pb-10 mt-4 border-y border-gray-400">
         {% block content %}{% endblock %}
     </div>
 

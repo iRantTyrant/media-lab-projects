@@ -1,0 +1,45 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="max-w-md mx-auto mt-10 p-6 bg-white mg-4">
+            <h2 class="text-2xl font-bold mb-6 text-center">Welcome back, {{ user.username }}!</h2>
+            <p class="text-center">You are already logged in.</p>
+            <div>
+                <form method="POST" action="{% url 'account:logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="w-full bg-white text-black font-bold py-2 border shadow rounded hover:bg-gray-700 hover:text-white transition">
+                        Logout
+                    </button>
+            </div>
+        </div>
+    <!--Login Form-->
+    {% else %}
+        <div class="max-w-md mx-auto mt-10 p-6 bg-white mg-4">
+            <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+
+            <form method="POST" novalidate>
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <div class="mb-4">
+                    {{ form.username.label_tag }}
+                    {{ form.username}}
+                    {{ form.username.errors }}
+                </div>
+
+                <div class="mb-4">
+                    {{ form.password.label_tag }}
+                    {{ form.password}}
+                    {{ form.password.errors }}
+                </div>
+
+                <button type="submit" class="w-full bg-white text-black font-bold py-2 border shadow rounded hover:bg-gray-700 hover:text-white transition ">
+                    Login
+                </button>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

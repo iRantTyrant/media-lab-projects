@@ -3,8 +3,8 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-<div class="py-24 sm:py-32">
-  <div class="mx-auto max-w-4xl px-6 lg:px-8 border-y border-gray-400 pt-10 pb-10">
+<div class="py-5">
+  <div class="mx-auto max-w-4xl px-6 lg:px-8 pt-10 pb-auto">
     <article class="prose prose-lg">
       <h1 class="text-4xl font-bold text-gray-900">{{ post.title }}</h1>
       <p class="text-sm text-gray-500 mt-2">
@@ -25,7 +25,7 @@
       <h2 class="text-2xl font-bold mb-4">Comments</h2>
     
       {% for comment in comments %}
-        <div class="mb-4 border-b pb-4">
+        <div class="border-b pb-4">
           <p class="text-sm text-gray-700"><strong>{{ comment.name }}</strong> ({{ comment.created|date:"F j, Y" }})</p>
           <p class="mt-2 text-gray-800">{{ comment.body|linebreaks }}</p>
         </div>
@@ -35,39 +35,43 @@
     </div>
     <!--Posted comments are displayed here -->
 
-    <!--Comment form is displayed here -->
+    <!-- Comment Form -->
     <div class="mt-16 border-t pt-10">
-      <h2 class="text-xl font-semibold mb-6">Leave a comment</h2>
+      <h2 class="text-xl font-semibold">Leave a Comment</h2>
 
       <form method="post" action="{% url 'blogapp:post_comment' post.id %}" class="space-y-6">
         {% csrf_token %}
 
-        {{ form.non_field_errors }}
+        <!-- Only show the form if the user is logged in -->
+        {% if user.is_authenticated %}
+          {{ form.non_field_errors }}
 
-        <div>
-          {{ form.name.label_tag }}
-          {{ form.name }}
-          {{ form.name.errors }}
-        </div>
+          <div>
+            {{ form.name.label_tag }}
+            {{ form.name }}
+            {{ form.name.errors }}
+          </div>
 
-        <div>
-          {{ form.email.label_tag }}
-          {{ form.email }}
-          {{ form.email.errors }}
-        </div>
+          <div>
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.email.errors }}
+          </div>
 
-        <div>
-          {{ form.body.label_tag }}
-          {{ form.body }}
-          {{ form.body.errors }}
-        </div>
+          <div>
+            {{ form.body.label_tag }}
+            {{ form.body }}
+            {{ form.body.errors }}
+          </div>
 
-        <button type="submit" class="px-4 py-2 border shadow bg-white text-black font-bold hover:bg-gray-700 hover:text-white transition">
-          Submit Comment
-        </button>
+          <button type="submit" class="px-4 py-2 border shadow bg-white text-black font-bold hover:bg-gray-700 hover:text-white transition">
+            Submit Comment
+          </button>
+        {% else %}
+          <p class="text-sm text-gray-500">You need to be logged in to submit a comment. <a href="{% url 'account:login' %}" class="text-blue-600">Login here</a></p>
+        {% endif %}
       </form>
     </div>
-    <!--Comment form is displayed here-->
   </div>
 </div>
 {% endblock %}
