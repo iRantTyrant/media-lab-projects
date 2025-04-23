@@ -1,23 +1,66 @@
 {% extends "blog/base.html" %}
+<!--Show in the title in the browser tab-->
 
-{% block title %}Login{% endblock %}
+{% block title %}
+    {% if user.is_authenticated %}
+        From the Blog - {{ user.username }}'s Account
+    {% else %}
+        From the Blog - Login
+    {% endif %}
+{% endblock %}
+
+<!--Show in the title in the browser tab-->
 
 {% block content %}
     {% if user.is_authenticated %}
+
+    <!--Account Manage Form and logout form-->
+        
         <div class="max-w-md mx-auto mt-10 p-6 bg-white mg-4">
-            <h2 class="text-2xl font-bold mb-6 text-center">Welcome back, {{ user.username }}!</h2>
-            <p class="text-center">You are already logged in.</p>
-            <div>
+            
+            <!--Account Welcome -->
+            <div class = "border-b border-gray-300 py-4">
+                <h2 class="text-2xl font-bold mb-6 text-center">Welcome back, {{ user.username }}!</h2>
+                <p class="text-center">What do you want to do ?</p>
+            </div>
+            <!--Account Welcome -->
+
+            <!--Account Manage Form-->
+            <div class="text-center border-b border-gray-300 py-4">
+                <p class="text-lg mt-4 text-center">You can change your password here.</p>
+                <div class="mt-4">
+                    <a href="{% url 'account:password_change' %}" class="w-full bg-white text-black font-bold mt-2 py-2 border shadow rounded hover:bg-gray-700 hover:text-white transition block text-center">Change Password</a>
+                </div>
+            </div>
+            <!--Account Manage Form-->
+
+            <!--Logout Form-->
+            <div class="text-center mt-4 border-b border-gray-300 py-4">
+                <p class="text-lg mt-4 text-center">Use the button bellow to logout from your account.</p>
                 <form method="POST" action="{% url 'account:logout' %}">
                     {% csrf_token %}
-                    <button type="submit" class="w-full bg-white text-black font-bold py-2 border shadow rounded hover:bg-gray-700 hover:text-white transition">
+                    <button type="submit" class="w-full bg-white text-black font-bold mt-2 py-2 border shadow rounded hover:bg-gray-700 hover:text-white transition">
                         Logout
                     </button>
+                </form>
             </div>
+            <!--Logout Form-->
+
+            <!--Go Back to Blog-->
+            <div class="text-center mt-4 border-b border-gray-300 py-4">
+                <p class="text-lg mt-4 text-center">Came here by accident? Use the button bellow to go back</p>
+                <div class = "mt-4">
+                    <a href="{% url 'blogapp:post_list' %}" class="w-full bg-white text-black font-bold mt-2 py-2 border shadow rounded hover:bg-gray-700 hover:text-white transition block text-center">Go to Blog</a>
+                </div>
+            </div>
+            <!--Go Back to Blog-->
+
         </div>
+    <!--Account Manage Form and logout form-->
+
     <!--Login Form-->
     {% else %}
-        <div class="max-w-md mx-auto mt-10 p-6 bg-white mg-4">
+        <div class="max-w-md mx-auto mt-10 p-6 bg-white mg-4 border rounded shadow">
             <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
 
             <form method="POST" novalidate>

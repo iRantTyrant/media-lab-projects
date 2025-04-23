@@ -14,7 +14,7 @@
         <h1 class="text-4xl font-bold text-left mb-">From the Blog</h1>
         <div class ="flex justify-between items-center">
             <p class="text-lg text-left">Welcome {{ user.username }}</p>
-            <a href="{% url 'account:login' %}" class= "btn btn-primary bg-white py-2 px-2  text-black font-bold border rounded shadow hover:bg-gray-700 hover:text-white transition">Logout</a>
+            <a href="{% url 'account:login' %}" class= "bg-white py-2 px-2  text-black font-bold border rounded shadow hover:bg-gray-700 hover:text-white transition">Account</a>
         </div>
     </div>   
     {% else %}
@@ -22,7 +22,7 @@
         <h1 class="text-4xl font-bold text-left mb-">From the Blog</h1>
         <div class ="flex justify-between items-center">
             <p class="text-lg text-left">Lorem ipsum</p>
-            <a href="{% url 'account:login' %}" class= "btn btn-primary bg-white py-2 px-2  text-black font-bold border rounded shadow hover:bg-gray-700 hover:text-white transition">Login</a>
+            <a href="{% url 'account:login' %}" class= "bg-white py-2 px-2  text-black font-bold border rounded shadow hover:bg-gray-700 hover:text-white transition">Login</a>
         </div>
     </div>   
     {% endif %} 

@@ -1,7 +1,12 @@
+#Importing the render function to render templates
 from django.shortcuts import render
+#Importing the path function to define URL patterns
 from django.urls import path 
+#Importing authentication views from Django's built-in auth module and login function
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+#Importing the redirect function to redirect users after login and logout
+from django.shortcuts import redirect
+#Importing the CustomAuthenticationForm class for custom authentication
 from .forms import CustomAuthenticationForm
 
 def login_view(request):
