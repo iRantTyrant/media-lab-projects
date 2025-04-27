@@ -8,6 +8,7 @@
 
   {% if sent %}
     <p class="text-green-600">Email successfully sent!</p>
+    <p class ="text-gray-600">Go back to <a href="{% url 'blogapp:post_list' %}" class="text-blue-600 hover:text-purple-600">the blog</a></p>
   {% else %}
   <form method="post" class="space-y-6">
     {% csrf_token %}

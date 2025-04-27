@@ -1,0 +1,128 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+  <div class="max-w-md mx-auto mt-10 p-6 bg-white border rounded-lg shadow">
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Create an account</h2>
+
+    <form method="post" class="space-y-6">
+      {% csrf_token %}
+
+    <!-- Required Info -->
+    <div class="mb-4 pb-4 border-b-2 border-gray-300">
+
+        <!-- Email Field -->
+        <div class="mb-4">
+            <label for="id_email" class="block mb-1">Email</label>
+            <input type="email" name="email" id="id_email"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            value="{{ form.email.value|default:'' }}"
+            placeholder="Enter your email">
+            {% if form.email.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.email.errors.0 }}</p>
+            {% endif %}
+        </div>
+        <!-- Email Field -->
+
+        <!-- Username Field -->
+        <div class="mb-4">
+            <label for="id_username" class="block mb-1">Username</label>
+            <input type="text" name="username" id="id_username"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            value="{{ form.username.value|default:'' }}"
+            placeholder="Enter your username">
+            {% if form.username.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.username.errors.0 }}</p>
+            {% endif %}
+        </div>
+        <!-- Username Field -->
+
+        <!-- Password1 Field -->
+        <div class="mb-4">
+            <label for="id_password1" class="block mb-1">Password</label>
+            <input type="password" name="password1" id="id_password1"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            placeholder="Enter your password">
+            {% if form.password1.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.password1.errors.0 }}</p>
+            {% endif %}
+        </div>
+        <!-- Password1 Field -->
+
+        <!-- Password2 Field -->
+        <div class="mb-4">
+            <label for="id_password2" class="block mb-1">Confirm Password</label>
+            <input type="password" name="password2" id="id_password2"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            placeholder="Re-enter your password">
+            {% if form.password2.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.password2.errors.0 }}</p>
+            {% endif %}
+        </div>
+        <!-- Password2 Field -->
+
+    </div>
+    <!-- Required Info -->
+
+    <!-- Optional Info -->
+    <div>
+        <h4 class="mb-2 text-xl font-semibold">Optional Information</h4>
+
+        <!-- Bio Field -->
+        <div class="mb-4">
+            <label for="id_bio" class="block mb-1">Bio</label>
+            <textarea name="bio" id="id_bio" rows="4"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            placeholder="Tell us something about yourself">{{ form.bio.value|default:'' }}</textarea>
+            {% if form.bio.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.bio.errors.0 }}</p>
+            {% endif %}
+        </div>
+        <!-- Bio Field -->
+
+        <!-- Location Field -->
+        <div class="mb-4">
+            <label for="id_location" class="block mb-1">Location</label>
+            <input type="text" name="location" id="id_location"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            value="{{ form.location.value|default:'' }}"
+            placeholder="Where are you located?">
+            {% if form.location.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.location.errors.0 }}</p>
+            {% endif %}
+        </div>
+        <!-- Location Field -->
+
+        <!-- Birthdate Field -->
+        <div class="mb-4">
+            <label for="id_birthdate" class="block mb-1">Birthdate</label>
+            <input type="date" name="birthdate" id="id_birthdate"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            value="{{ form.birthdate.value|default:'' }}">
+            {% if form.birthdate.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.birthdate.errors.0 }}</p>
+            {% endif %}
+        </div>
+        <!-- Birthdate Field -->
+
+    </div>
+    <!-- Optional Info -->
+
+    <!-- Submit Button -->
+    <div>
+        <button type="submit"
+        class="w-full bg-white text-black font-bold py-2 border shadow rounded hover:bg-gray-700 hover:text-white transition ">
+        Register
+        </button>
+    </div>
+    <!-- Submit Button -->
+
+    </form>
+
+  </div>
+
+{% endblock %}
+
+<!--We use the Django built in registration view that we have on the views.py of the same directory but we connect it to html (through the name attribute) instead of rendering the built page that django has so we can use Tailwind to customise it and make it look like the rest of the site-->

@@ -13,9 +13,15 @@ from django.shortcuts import redirect
 #Importing the CustomAuthenticationForm class for custom authentication
 from .forms import CustomAuthenticationForm
 
-#Importing the UserCreationForm class for user registration
-from django.contrib.auth.forms import UserCreationForm
+#Importing the UserCreationForm class for user registration and its custom form
+from .forms import CustomUserCreationForm
 
+#Login required decorator to restrict access to certain views (profile view in this case)
+from django.contrib.auth.decorators import login_required
+
+from .models import Profile  # Importing the Profile model to handle user profiles
+
+#Login view to handle user login
 def login_view(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(data=request.POST)
@@ -40,15 +46,55 @@ def login_view(request):
 
     return render(request, 'login.html', {'form': form})
 
-def logged_out_view(request):
-    return render(request, 'account/logged_out.html')
-
+#Registration view to handle user registration
 def register_view(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('account:login')  # or wherever you want
+            form.save()  # This will save the user and the profile
+
+            return redirect('account:login')  # Redirect to login after registration
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
+
     return render(request, 'account/register.html', {'form': form})
+
+# View to handle viewing and editing the user profile
+@login_required
+def profile_edit_view(request):
+    # Get the logged-in user
+    user = request.user
+    profile = Profile.objects.get(user=user)  # Get the profile for the logged-in user
+    
+    # If the form is submitted with updated data
+    if request.method == 'POST':
+        # Create a form for updating profile information
+        form = CustomUserCreationForm(request.POST)  # Using the same form or create a new one for profile
+        if form.is_valid():
+            # Update the user's profile fields
+            profile.bio = form.cleaned_data.get('bio', profile.bio)
+            profile.location = form.cleaned_data.get('location', profile.location)
+            profile.birth_date = form.cleaned_data.get('birthdate', profile.birth_date)
+            profile.save()  # Save the updated profile
+
+            return redirect('profile')  # Redirect to the profile view after saving
+    else:
+        # Initialize the form with current profile data
+        form = CustomUserCreationForm(initial={
+            'bio': profile.bio,
+            'location': profile.location,
+            'birthdate': profile.birth_date,
+        })
+
+    return render(request, 'account/profile_edit.html', {'form': form})
+
+
+#View to handle displaying the user profile
+@login_required
+def profile_view(request):
+    user = request.user
+    # Get the user's profile or create one if it doesn't exist
+    profile, created = Profile.objects.get_or_create(user=user)
+
+    # Pass the profile to the template for display
+    return render(request, 'account/profile.html', {'profile': profile})

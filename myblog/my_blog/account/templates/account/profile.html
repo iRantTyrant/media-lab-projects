@@ -1,0 +1,57 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    {% if user.is_authenticated %}
+        From the Blog - {{ user.username }}'s Account
+    {% else %}
+        From the Blog - Login
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="max-w-md mx-auto mt-10 p-6 bg-white border rounded-lg shadow">
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Your Profile</h2>
+
+    <!-- Profile Information Section -->
+    <div class="space-y-6">
+      
+      <!-- Bio Field -->
+      <div class="mb-4">
+          <label for="bio" class="block mb-1">Bio</label>
+          <p id="bio" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100">
+            {{ profile.bio|default:"No bio provided." }}
+          </p>
+      </div>
+      <!-- Bio Field -->
+
+      <!-- Location Field -->
+      <div class="mb-4">
+          <label for="location" class="block mb-1">Location</label>
+          <p id="location" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100">
+            {{ profile.location|default:"No location provided." }}
+          </p>
+      </div>
+      <!-- Location Field -->
+
+      <!-- Birthdate Field -->
+      <div class="mb-4">
+          <label for="birthdate" class="block mb-1">Birthdate</label>
+          <p id="birthdate" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100">
+            {{ profile.birth_date|default:"No birthdate provided." }}
+          </p>
+      </div>
+      <!-- Birthdate Field -->
+      
+    <a href="{% url 'account:profile-edit' %}" 
+       class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-black font-bold text-center hover:bg-gray-700 hover:text-white transition">
+       Edit Profile
+    </a>
+
+    </div>
+    <!-- Profile Information Section -->
+
+    
+  </div>
+
+{% endblock %}

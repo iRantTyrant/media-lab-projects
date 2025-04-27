@@ -1,8 +1,8 @@
 # Importing path from django.urls to define URL patterns
 from django.urls import path 
 
-# Importing views for login, logout, and signup
-from .views import login_view , register_view
+# Importing views for login, logout, signp  and profile
+from .views import login_view , register_view , profile_edit_view , profile_view
 
 # Importing auth views for authentication password change , reset password , and login logout built in django views
 from django.contrib.auth import views as auth_views 
@@ -12,6 +12,8 @@ from django.urls import reverse_lazy
 
 # Importing TemplateView for rendering templates
 from django.views.generic import TemplateView 
+
+
 
 
 app_name = 'account' # Setting the app name for namespacing URLs 
@@ -64,4 +66,9 @@ urlpatterns = [
 
     #URL for signup view (This is the template that will be shown after successfully signing up)
     path('register/', register_view, name='register'),
+
+    #URL for profile view (This is the template that will be shown after successfully signing in)
+    path('profile/',profile_view, name='profile'),
+    #URL for profile edit view (This is the template that will be shown after successfully signing in)
+    path('profile/edit/', profile_edit_view, name='profile-edit'), 
 ]

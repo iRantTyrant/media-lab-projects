@@ -1,0 +1,68 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    {% if user.is_authenticated %}
+        From the Blog - {{ user.username }}'s Account
+    {% else %}
+        From the Blog - Login
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="max-w-md mx-auto mt-10 p-6 bg-white border rounded-lg shadow">
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Your Profile</h2>
+
+    <form method="post" class="space-y-6">
+      {% csrf_token %}
+
+      <!-- Bio Field -->
+      <div class="mb-4">
+          <label for="id_bio" class="block mb-1">Bio</label>
+          <textarea name="bio" id="id_bio" rows="4"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+          placeholder="Tell us something about yourself">{{ form.bio.value|default:'' }}</textarea>
+          {% if form.bio.errors %}
+          <p class="text-red-500 text-sm mt-1">{{ form.bio.errors.0 }}</p>
+          {% endif %}
+      </div>
+      <!-- Bio Field -->
+
+      <!-- Location Field -->
+      <div class="mb-4">
+          <label for="id_location" class="block mb-1">Location</label>
+          <input type="text" name="location" id="id_location"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+          value="{{ form.location.value|default:'' }}"
+          placeholder="Where are you located?">
+          {% if form.location.errors %}
+          <p class="text-red-500 text-sm mt-1">{{ form.location.errors.0 }}</p>
+          {% endif %}
+      </div>
+      <!-- Location Field -->
+
+      <!-- Birthdate Field -->
+      <div class="mb-4">
+          <label for="id_birthdate" class="block mb-1">Birthdate</label>
+          <input type="date" name="birthdate" id="id_birthdate"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+          value="{{ form.birthdate.value|default:'' }}">
+          {% if form.birthdate.errors %}
+          <p class="text-red-500 text-sm mt-1">{{ form.birthdate.errors.0 }}</p>
+          {% endif %}
+      </div>
+      <!-- Birthdate Field -->
+
+      <!-- Submit Button -->
+      <div>
+          <button type="submit"
+          class="w-full bg-white text-black font-bold py-2 border shadow rounded hover:bg-gray-700 hover:text-white transition ">
+          Save Changes
+          </button>
+      </div>
+      <!-- Submit Button -->
+    </form>
+  </div>
+
+{% endblock %}
+
